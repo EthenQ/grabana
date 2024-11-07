@@ -39,3 +39,5 @@ require (
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/protobuf v1.32.0 // indirect
 )
+
+replace github.com/K-Phoen/sdk v0.12.4 => github.com/EthenQ/sdk v0.12.4-reset
