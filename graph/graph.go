@@ -390,6 +390,33 @@ func SeriesOverride(opts ...series.OverrideOption) Option {
 	}
 }
 
+func FieldOverride(override ...sdk.FieldConfigOverride) Option {
+	return func(graph *Graph) error {
+		graph.Builder.GraphPanel.FieldConfig.Overrides = append(graph.Builder.GraphPanel.FieldConfig.Overrides, override...)
+		return nil
+	}
+}
+
+func OverrideSeriesStyle(series string, style string) Option {
+	fco := sdk.FieldConfigOverride{
+		Matcher: struct {
+			ID      string "json:\"id\""
+			Options string "json:\"options\""
+		}{
+			"byName",
+			series,
+		},
+		Properties: []sdk.FieldConfigOverrideProperty{
+			{
+				ID:    "custom.drawStyle",
+				Value: style,
+			},
+		},
+	}
+	opt := FieldOverride(fco)
+	return opt
+}
+
 // Legend defines what should be shown in the legend.
 func Legend(opts ...LegendOption) Option {
 	return func(graph *Graph) error {
