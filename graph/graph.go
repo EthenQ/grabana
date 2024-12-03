@@ -394,7 +394,7 @@ func FieldOverride(override ...sdk.FieldConfigOverride) Option {
 	return func(graph *Graph) error {
 		fmt.Println("builder field override: ", graph.Builder.GraphPanel)
 		if graph.Builder.GraphPanel.FieldConfig == nil {
-			graph.Builder.GraphPanel.FieldConfig = &sdk.FieldConfig{}
+			graph.Builder.GraphPanel.FieldConfig = new(sdk.FieldConfig)
 		}
 		fmt.Println("builder field override: ", graph.Builder.GraphPanel.FieldConfig)
 		fmt.Println("builder field override: ", graph.Builder.GraphPanel.FieldConfig.Overrides)
