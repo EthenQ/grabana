@@ -398,6 +398,7 @@ func FieldOverride(override ...sdk.FieldConfigOverride) Option {
 		}
 		fmt.Println("builder field override: ", graph.Builder.GraphPanel.FieldConfig)
 		fmt.Println("builder field override: ", graph.Builder.GraphPanel.FieldConfig.Overrides)
+		graph.Builder.GraphPanel.FieldConfig.Defaults.Custom.DrawStyle = "line"
 		graph.Builder.GraphPanel.FieldConfig.Overrides = append(graph.Builder.GraphPanel.FieldConfig.Overrides, override...)
 		return nil
 	}
@@ -409,8 +410,8 @@ func OverrideSeriesStyle(series string, style string) Option {
 			ID      string "json:\"id\""
 			Options string "json:\"options\""
 		}{
-			"byName",
-			series,
+			"byRegexp",
+			"/.*指血.*/",
 		},
 		Properties: []sdk.FieldConfigOverrideProperty{
 			{
