@@ -396,8 +396,7 @@ func FieldOverride(override ...sdk.FieldConfigOverride) Option {
 		if graph.Builder.GraphPanel.FieldConfig == nil {
 			graph.Builder.GraphPanel.FieldConfig = new(sdk.FieldConfig)
 		}
-		fmt.Println("builder field override: ", graph.Builder.GraphPanel.FieldConfig)
-		fmt.Println("builder field override: ", graph.Builder.GraphPanel.FieldConfig.Overrides)
+		graph.Builder.GraphPanel.FieldConfig.Defaults.Color.Mode = "palette-classic"
 		graph.Builder.GraphPanel.FieldConfig.Defaults.Custom.DrawStyle = "line"
 		graph.Builder.GraphPanel.FieldConfig.Overrides = append(graph.Builder.GraphPanel.FieldConfig.Overrides, override...)
 		return nil
